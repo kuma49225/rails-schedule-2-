@@ -1,0 +1,33 @@
+<%= render "shared/partial" %>
+
+<%= form_with model: @plan do |f| %>
+  <table>
+    <tr>
+      <th>タイトル</th>
+      <td><%= @plan.title %></td>
+    </tr>
+
+    <tr>
+      <th>開始日</th>
+      <td><%= l @plan.start_date %></td>
+    </tr>
+
+    <tr>
+      <th>終了日</th>
+      <td><%= l @plan.end_date %></td>
+    </tr>
+
+    <tr>
+      <th>終日</th>
+      <td><%= @plan.is_all_day ? '◯': '' %></td>
+    </tr>
+
+    <tr>
+      <th>スケジュールメモ</th>
+      <td><%= @plan.memo %></td>
+    </tr>
+  </table>
+
+<% end %>
+
+<%= link_to "一覧に戻る", :plans %>
