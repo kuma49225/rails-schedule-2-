@@ -1,0 +1,42 @@
+<h3>予定一覧</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>更新日時</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plans.each do |plan| %>
+      <tr>
+        <td><%= plan.id %></td>
+        <td><%= plan.title %></td>
+        <td><%= plan.start_date %></td>
+        <td><%= plan.end_date %></td>
+        <td>
+         <% if plan.is_all_day %>
+         ⚪︎
+         <% end %>
+        </td>
+        <td><%= plan.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= link_to '詳細', plan_path(plan) %></td>
+        <td><%= link_to '編集', edit_plan_path(plan) %></td>
+        <td><%= link_to '削除', plan_path(plan), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to "予定の新規登録", :new_plan %></p>
+
+<p>現在の予定数: <%= @plans.count %></p>
+<p>現在の日時: <%= Time.now.strftime("%Y-%m-%d %H:%M:%S") %></p>
